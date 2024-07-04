@@ -1,0 +1,21 @@
+{% extends 'catalog/base.html' %}
+{% load mediapath_tag %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="text-center">
+                <h2 class="mb-4">Версия "{{ object.version_name }}"</h2>
+                <p class="text-muted">Доступна версия: {{ object.version_number }}</p>
+                <p class="text-muted">Текущая версия: {{ object.current_version }}</p>
+                <div class="col-md-4 mx-auto mb-4">
+                    <a href="{% url 'catalog:version-edit' object.pk %}"
+                       class="btn btn-warning btn-lg btn-block">Изменить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

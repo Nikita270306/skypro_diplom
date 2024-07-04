@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load mediapath_tag %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4 d-flex align-items-center justify-content-center mb-4">
+            <a href="{% url 'main:product-form' %}" class="btn btn-outline-primary btn-lg btn-block">Создать продукт</a>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for product in products %}
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ product.name }}</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">$ {{ product.price_per_unit }}</h1>
+                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                        <li><img src="{% mediapath product.image %}" width="300" height="225"/></li>
+                        <br>
+                        <li>{{ product.description|truncatechars:100 }}</li>
+                        <li><b>Категория: </b>{{ product.category }}</li>
+                        <br>
+                        <li><span>Дата создания карточки: {{ product.creation_date }}</span></li>
+                    </ul>
+                    <a href="{% url 'main:product-detail' pk=product.id %}" class="btn btn-outline-primary btn-lg btn-block">Купить</a><br><br>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+{% endblock %}

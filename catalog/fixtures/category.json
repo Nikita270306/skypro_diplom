@@ -1,0 +1,26 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Продукты питания",
+      "description": "Продукты питания для ежедневного употребления"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Бытовая химия",
+      "description": "Бытовая химия поможет вам в уборке вашего дома"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Напитки",
+      "description": "Напитки для утоления жажды"
+    }
+  }
+]

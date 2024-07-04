@@ -1,0 +1,52 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+
+<style>
+    .card {
+        height: 100%; /* Фиксированная высота для всех карточек */
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .card-title,
+    .card-text {
+        margin-bottom: 0; /* Убираем отступы для названия и описания */
+    }
+</style>
+
+<div class="container">
+    <div class="col-12">
+        <a class="btn btn-outline-primary" href="{% url 'catalog:create_product' %}">Добавить продукт</a>
+    </div>
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 mb-4">
+            <div class="card mb-4 box-shadow">
+                {% if product.image %}
+                <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description|truncatechars:100 }}</p>
+                    <div>
+                        <ul class="list-unstyled">
+                            <li><b>Цена:</b> {{ product.price_per_unit }}</li>
+                            <li><b>Категория:</b> {{ product.category }}</li>
+                            <li><b>Дата создания:</b> {{ product.created_at }}</li>
+                        </ul>
+<a class="btn btn-outline-primary" href="{% url 'catalog:product_detail' pk=product.pk %}">Купить</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
